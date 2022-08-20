@@ -11,4 +11,5 @@ ADD parrots_backend
 
 ENTRYPOINT ["uvicorn", "parrots_backend.app:app"]
 
+EXPOSE 8080
 CMD ["--host", "0.0.0.0", "--port", "8080"]
