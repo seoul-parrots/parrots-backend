@@ -7,7 +7,7 @@ COPY requirements.txt .
 RUN pip3 install --no-cache-dir --upgrade pip
 RUN pip3 install --no-cache-dir --upgrade -r requirements.txt
 
-ADD parrots_backend
+COPY parrots_backend parrots_backend
 
 ENTRYPOINT ["uvicorn", "parrots_backend.app:app"]
 
