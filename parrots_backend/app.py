@@ -1,7 +1,7 @@
 import os
 from uuid import uuid4
 
-from fastapi import FastAPI, File, UploadFile
+from fastapi import FastAPI, File, UploadFile, HTTPException
 from pydantic import BaseModel
 from starlette.responses import FileResponse
 
@@ -31,4 +31,8 @@ def upload(file: UploadFile = File()):
 
 @app.post("/download")
 def download(path: FilePath):
+
+    if not os.path.exists(path.path):
+        raise HTTPException(status_code=404, detail="Item not found")
+
     return FileResponse(path.path)
